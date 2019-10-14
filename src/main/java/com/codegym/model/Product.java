@@ -1,7 +1,6 @@
 package com.codegym.model;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "product")
@@ -12,19 +11,39 @@ public class Product {
 
     private String name,price,amount;
 
-    private LocalDate dayCreate;
+    private String dayCreate;
 
     @Lob
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+
+    private Category category;
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Product() {
     }
 
-    public Product(String name, String price, String amount, LocalDate dayCreate, String description) {
+    public Product(String name, String price, String amount, String dayCreate, String description) {
         this.name = name;
         this.price = price;
         this.amount = amount;
         this.dayCreate = dayCreate;
+        this.description = description;
+    }
+
+    public Product(String name, String price, String amount, String description) {
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
         this.description = description;
     }
 
@@ -60,11 +79,11 @@ public class Product {
         this.amount = amount;
     }
 
-    public LocalDate getDayCreate() {
+    public String getDayCreate() {
         return dayCreate;
     }
 
-    public void setDayCreate(LocalDate dayCreate) {
+    public void setDayCreate(String dayCreate) {
         this.dayCreate = dayCreate;
     }
 

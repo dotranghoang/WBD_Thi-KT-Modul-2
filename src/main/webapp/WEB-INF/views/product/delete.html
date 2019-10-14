@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Delete Product</title>
 </head>
 <body>
+<center>
+    <h1 class="title">Are You Sure?</h1>
+    <p><a href="/product">Back to list type</a></p>
+
+    <form th:action="@{/delete-product}" th:object="${product}" method="post">
+        <table border="1">
+            <tr>
+                <td>Type Product</td>
+            </tr>
+            <tr>
+                <td><textarea rows="1" cols="50"  th:text="${product.category.name}"/></td>
+            </tr>
+            <tr>
+                <input type="hidden" th:field="*{id}"/>
+                <td>Name</td>
+            </tr>
+            <tr>
+                <td><textarea rows="2" cols="50"  th:text="${product.name}"/></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td><textarea rows="10" cols="50" th:text="${product.name}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+            </tr>
+            <tr>
+                <td><textarea rows="1" cols="50" type="text" th:field="*{price}"/></td>
+            </tr>
+            <tr>
+                <td>Date Create</td>
+            </tr>
+            <tr>
+                <td><input type="text" th:field="*{dayCreate}"></td>
+            </tr>
+
+            <tr>
+                <td><button type="submit" style="width: 20%; height: 20%;">Delete</button></td>
+            </tr>
+        </table>
+    </form>
+</center>
 
 </body>
 </html>

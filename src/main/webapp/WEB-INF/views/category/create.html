@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create New Category</title>
 </head>
 <body>
+<center>
+    <h1>Create New Category</h1>
+    <p><a href="/category">Back to list category</a></p>
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
 
+    <form th:action="@{/save-category}" th:object="${category}" method="post">
+        <table>
+            <tr>
+                <td>Name</td>
+            </tr>
+            <tr>
+                <td><textarea rows="2" cols="50" type="text" th:field="*{name}"/></td>
+            </tr>
+            <tr>
+                <td><button type="submit" style="width: 20%; height: 20%;">Create</button></td>
+            </tr>
+        </table>
+    </form>
+</center>
 </body>
 </html>

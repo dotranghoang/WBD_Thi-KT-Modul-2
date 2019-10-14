@@ -1,6 +1,8 @@
 package com.codegym;
 
+import com.codegym.service.CategoryService;
 import com.codegym.service.ProductService;
+import com.codegym.service.impl.CategoryServiceImpl;
 import com.codegym.service.impl.ProductServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -118,5 +120,10 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     @Bean
     public ProductService productService(){
         return new ProductServiceImpl();
+    }
+
+    @Bean
+    public CategoryService categoryService(){
+        return new CategoryServiceImpl();
     }
 }

@@ -1,10 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>create</title>
+    <title>List All Category</title>
 </head>
 <body>
-
+<center>
+<h1>List Category</h1>
+    <p><a href="/create-category">Create New Category</a> || <a href="/product">View All Product</a> </p>
+    <table border="1" width="600">
+        <tr>
+            <td>Id</td>
+            <td>Type Product</td>
+            <td></td>
+        </tr>
+        <div th:each="category : ${categories}">
+            <tr>
+                <td th:text="${category.id}"></td>
+                <td th:text="${category.name}"></td>
+                <td>
+                    <a th:href="@{/edit-category/__${category.id}__}"  th:text="Edit"></a> ||
+                    <a th:href="@{/delete-category/__${category.id}__}"  th:text="Delete">
+                <td/>
+            </tr>
+        </div>
+    </table>
+</center>
 </body>
 </html>
