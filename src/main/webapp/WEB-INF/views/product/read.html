@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
-</body>
+<center>
+    <h1 class="title">Detail Product</h1>
+    <p><a href="/product">Back to list type</a></p>
+        <table>
+            <tr>
+                <td>Type Product</td>
+            </tr>
+            <tr>
+                <td><textarea rows="2" cols="50" th:text="${product.category.name}" /></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+            </tr>
+            <tr>
+                <td><textarea rows="2" cols="50" type="text" th:text="${product.name}"/></td>
+            </tr>
+            <tr>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td><textarea rows="10" cols="50" th:text="${product.description}"></textarea></td>
+            </tr>
+            <tr>
+                <td>Price</td>
+            </tr>
+            <tr>
+                <td><textarea rows="1" cols="50" th:text="${product.description}"/></td>
+            </tr>
+            <tr>
+                <td><textarea rows="1" cols="50" th:text="${product.dayCreate}"/></td>
+            </tr>
+            <tr>
+                <td><button type="submit" style="width: 20%; height: 20%;">Create</button></td>
+            </tr>
+        </table>
+    <td>
+        <a th:href="@{/edit-product/__${product.id}__}"  th:text="Edit"></a> ||
+        <a th:href="@{/delete-product/__${product.id}__}"  th:text="Delete">
+    <td/>
+</center></body>
 </html>

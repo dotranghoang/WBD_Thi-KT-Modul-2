@@ -1,5 +1,6 @@
 package com.codegym.service.impl;
 
+import com.codegym.model.Category;
 import com.codegym.model.Product;
 import com.codegym.repository.ProductRepository;
 import com.codegym.service.ProductService;
@@ -31,5 +32,20 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void save(Product product) {
         productRepository.save(product);
+    }
+
+    @Override
+    public Page<Product> findAllByNameContaining(String name, Pageable pageable) {
+        return productRepository.findAllByNameContaining(name,pageable);
+    }
+
+    @Override
+    public Page<Product> findAllByCategory(Category category, Pageable pageable) {
+        return productRepository.findAllByCategory(category , pageable);
+    }
+
+    @Override
+    public Page<Product> findAllByCategoryAndNameContaining(Category category, String name, Pageable pageable) {
+        return productRepository.findAllByCategoryAndNameContaining(category,name,pageable);
     }
 }

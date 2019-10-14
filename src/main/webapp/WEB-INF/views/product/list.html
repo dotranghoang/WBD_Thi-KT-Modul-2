@@ -9,6 +9,16 @@
 <center>
 <h1>List Product</h1>
     <p><a href="/create-product">Create New Product</a> || <a href="/category">View All Category</a> </p>
+    <form th:action="@{/product}" method="post">
+        <select  name="id" >
+            <option th:value="-1">View All Type Note</option>
+            <option th:each="category : ${categories}" th:value="${category.id}"
+                    th:text="${category.name}">
+            </option>
+        </select>
+        <input name="s" type="text" placeholder="Search by Name Product">
+        <input type="submit" value="Search">
+    </form>
     <table border="1" width="700">
         <tr>
         <td>ID Product</td>
