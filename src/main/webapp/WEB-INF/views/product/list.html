@@ -19,12 +19,14 @@
         <input name="s" type="text" placeholder="Search by Name Product">
         <input type="submit" value="Search">
     </form>
-    <table border="1" width="700">
+    <table border="1" width="1000">
         <tr>
         <td>ID Product</td>
         <td>Name Product</td>
         <td>Type Product</td>
-
+        <td>Description</td>
+        <td>Amount</td>
+        <td>Update Time</td>
         <td></td>
         </tr>
         <div th:each="product : ${products}">
@@ -32,6 +34,9 @@
                 <td th:text="${product.id}"></td>
                 <td><a th:href="@{/read-product/__${product.id}__}" th:text="${product.name}"></a> </td>
                 <td th:text="${product.category.name}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.amount}"></td>
+                <td th:text="${product.dayCreate}"></td>
                 <td>
                     <a th:href="@{/edit-product/__${product.id}__}"  th:text="Edit"></a> ||
                     <a th:href="@{/delete-product/__${product.id}__}"  th:text="Delete">

@@ -30,6 +30,7 @@
             </tr>
             <tr>
                 <td><textarea rows="2" cols="50" type="text" th:field="*{name}"/></td>
+                <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
             </tr>
             <tr>
                 <td>Description</td>
@@ -41,7 +42,15 @@
                 <td>Price</td>
             </tr>
             <tr>
-                <td><textarea rows="1" cols="50" type="text" th:field="*{price}"/></td>
+                <td><input type="number" th:field="*{price}"/></td>
+                <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+            </tr>
+            <tr>
+                <td><input type="number" th:field="*{amount}"/></td>
+                <td th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}">Name Error</td>
             </tr>
             <tr>
                 <td><button type="submit" style="width: 20%; height: 20%;">Update</button></td>

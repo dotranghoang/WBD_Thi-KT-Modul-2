@@ -1,6 +1,12 @@
 package com.codegym.model;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "product")
@@ -9,7 +15,16 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name,price,amount;
+    @NotEmpty
+    private String name;
+
+    @NotNull
+    @Min(0)
+    private Long price;
+
+    @NotNull
+    @Min(0)
+    private Long amount;
 
     private String dayCreate;
 
@@ -32,7 +47,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String price, String amount, String dayCreate, String description) {
+    public Product(String name, Long price, Long amount, String dayCreate, String description) {
         this.name = name;
         this.price = price;
         this.amount = amount;
@@ -40,7 +55,7 @@ public class Product {
         this.description = description;
     }
 
-    public Product(String name, String price, String amount, String description) {
+    public Product(String name, Long price, Long amount, String description) {
         this.name = name;
         this.price = price;
         this.amount = amount;
@@ -63,19 +78,19 @@ public class Product {
         this.name = name;
     }
 
-    public String getPrice() {
+    public Long getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Long price) {
         this.price = price;
     }
 
-    public String getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(String amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 

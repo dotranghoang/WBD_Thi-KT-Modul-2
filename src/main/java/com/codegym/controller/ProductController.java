@@ -9,10 +9,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.Clock;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 @Controller
@@ -26,6 +30,11 @@ public class ProductController {
     @ModelAttribute("categories")
     public Iterable<Category> categories(){
         return categoryService.findAll();
+    }
+
+    @RequestMapping("/")
+    public String home(){
+        return "redirect:product";
     }
 
     @GetMapping("/product")
@@ -69,9 +78,14 @@ public class ProductController {
     }
 
     @PostMapping("/save-product")
-    public ModelAndView saveNote(@ModelAttribute Product product){
+    public ModelAndView saveNote(@Validated @ModelAttribute Product product, BindingResult bindingResult){
 
-        String date = String.valueOf(LocalDate.now());
+        if (bindingResult.hasFieldErrors()) {
+            ModelAndView modelAndView = new ModelAndView("/product/create");
+            return modelAndView;
+        }
+
+        String date = String.valueOf(java.time.LocalDateTime.now());
         product.setDayCreate(date);
         productService.save(product);
         ModelAndView modelAndView = new ModelAndView("/product/create");
@@ -92,7 +106,13 @@ public class ProductController {
     }
 
     @PostMapping("/update-product")
-    public ModelAndView updateNote(@ModelAttribute Product product){
+    public ModelAndView updateNote(@Validated @ModelAttribute Product product, BindingResult bindingResult){
+
+        if (bindingResult.hasFieldErrors()) {
+            ModelAndView modelAndView = new ModelAndView("/product/edit");
+            return modelAndView;
+        }
+
         productService.save(product);
 
         ModelAndView modelAndView = new ModelAndView("/product/edit");
